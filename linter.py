@@ -18,6 +18,7 @@ logger = logging.getLogger('SublimeLinter.plugin.php')
 
 
 def _filter_message(message):
+    # type: (str) -> str
     if not message:
         message = 'parse error'
     else:
@@ -33,9 +34,8 @@ def _filter_message(message):
 class PHP(Linter):
     """Provides an interface to php -l."""
 
-    defaults = {
-        'selector': 'source.php, text.html.basic'
-    }
+    syntax = ('php', 'html')
+
     regex = (
         r'^(?P<error>Parse|Fatal) error:\s*'
         r'(?P<message>((?:parse|syntax) error,?)?\s*(?:unexpected \'(?P<near>[^\']+)\')?.*) '
